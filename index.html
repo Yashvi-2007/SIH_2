@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarbonVerse: Tree-Planting Carbon Credit Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Earth Tones (Cream, Forest Green, Slate Gray, Burnt Orange) -->
+    <!-- Application Structure Plan: The SPA is designed as a single-page narrative scroll, guiding users from the high-level concept to the operational details. This structure was chosen over a complex dashboard because the source material is a business model, best understood through a story-like progression. Key sections include an introduction to the ecosystem's players, an interactive step-by-step process flow, a showcase of platform features, and a visual breakdown of the financial model. This flow facilitates understanding by building concepts upon each other, making the complex model digestible for potential investors, partners, or customers. -->
+    <!-- Visualization & Content Choices: - **Ecosystem Players**: Report Info: Customer Segments -> Goal: Inform -> Viz: Styled cards -> Interaction: Hover for brief info -> Justification: Quickly introduces key stakeholders. - **Interaction Flow**: Report Info: 10-step process -> Goal: Organize/Explain -> Viz: HTML/CSS visual diagram -> Interaction: Click on a step to display detailed text -> Justification: Transforms a static list into an engaging, self-paced learning tool. - **Revenue Streams**: Report Info: List of revenue sources -> Goal: Compare/Inform -> Viz: Donut Chart -> Interaction: Hover to see percentage details -> Justification: Visually represents the financial model's composition, making it easier to grasp than text alone. (Library: Chart.js). - **Platform Features**: Report Info: List of features -> Goal: Organize -> Viz: Tabbed Interface -> Interaction: Click to switch content -> Justification: Organizes detailed features cleanly without cluttering the page. All visual diagrams are built with HTML/CSS and Tailwind, confirming NO SVG/Mermaid. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8; /* Creamy white */
+        }
+        .text-green-deep { color: #004d40; }
+        .bg-green-deep { background-color: #004d40; }
+        .border-green-deep { border-color: #004d40; }
+        .text-slate-deep { color: #334155; }
+        .bg-slate-light { background-color: #f1f5f9; }
+        .text-accent { color: #c2410c; }
+        .bg-accent { background-color: #c2410c; }
+        .border-accent { border-color: #c2410c; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .step-item.active {
+            background-color: #004d40;
+            color: white;
+            transform: scale(1.05);
+        }
+        .tab-item.active {
+            border-bottom: 2px solid #c2410c;
+            color: #c2410c;
+        }
+    </style>
+</head>
+<body class="text-slate-deep">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-green-deep">CarbonVerse</a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#ecosystem" class="hover:text-accent transition-colors">The Ecosystem</a>
+                <a href="#how-it-works" class="hover:text-accent transition-colors">How It Works</a>
+                <a href="#features" class="hover:text-accent transition-colors">Platform Features</a>
+                <a href="#business-model" class="hover:text-accent transition-colors">Business Model</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="py-20 md:py-32 text-center bg-white">
+            <div class="container mx-auto px-6">
+                <h1 class="text-4xl md:text-6xl font-bold text-green-deep leading-tight">A Marketplace for a Greener Planet</h1>
+                <p class="mt-6 text-lg md:text-xl max-w-3xl mx-auto text-slate-600">
+                    Connecting vital reforestation projects with industries committed to sustainability. We translate environmental action into verifiable carbon credits, creating a transparent and impactful financial ecosystem.
+                </p>
+                <a href="#how-it-works" class="mt-10 inline-block bg-accent text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-opacity-90 transition-transform hover:scale-105">
+                    See How It Works
+                </a>
+            </div>
+        </section>
+
+        <section id="ecosystem" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-green-deep">Our Digital Ecosystem</h2>
+                    <p class="mt-4 text-lg max-w-2xl mx-auto text-slate-600">Three key players collaborate to create a cycle of growth and sustainability.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-md border border-gray-100 text-center">
+                        <div class="text-5xl mb-4 text-green-deep">🌳</div>
+                        <h3 class="text-2xl font-semibold mb-2 text-green-deep">Reforestation NGOs</h3>
+                        <p class="text-slate-600">The heart of our mission. These organizations plant and nurture forests, providing the core environmental asset and are motivated by stable funding and transparent project tracking.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md border border-gray-100 text-center">
+                         <div class="text-5xl mb-4 text-slate-deep">🏭</div>
+                        <h3 class="text-2xl font-semibold mb-2 text-green-deep">Steel Industry Partners</h3>
+                        <p class="text-slate-600">The drivers of demand. These forward-thinking companies purchase carbon credits to offset emissions, meet sustainability goals, and enhance their corporate social responsibility.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md border border-gray-100 text-center">
+                         <div class="text-5xl mb-4 text-accent">🛡️</div>
+                        <h3 class="text-2xl font-semibold mb-2 text-green-deep">Verification Bodies</h3>
+                        <p class="text-slate-600">The guardians of integrity. Independent bodies like Verra and Gold Standard provide crucial third-party verification, ensuring every carbon credit is legitimate, permanent, and additional.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-green-deep">The Carbon Credit Lifecycle</h2>
+                    <p class="mt-4 text-lg max-w-2xl mx-auto text-slate-600">Follow the journey from a single seed to a retired carbon credit. Click on each step to learn more.</p>
+                </div>
+                <div class="flex flex-col md:flex-row items-start gap-8">
+                    <div class="w-full md:w-1/2 flex flex-col space-y-4">
+                        <div id="step-1" class="step-item p-4 border border-gray-200 rounded-lg cursor-pointer transition-all duration-300 shadow-sm hover:shadow-md">
+                            <h4 class="font-bold text-lg">1. Plant</h4>
+                        </div>
+                        <div id="step-2" class="step-item p-4 border border-gray-200 rounded-lg cursor-pointer transition-all duration-300 shadow-sm hover:shadow-md">
+                            <h4 class="font-bold text-lg">2. Record</h4>
+                        </div>
+                        <div id="step-3" class="step-item p-4 border border-gray-200 rounded-lg cursor-pointer transition-all duration-300 shadow-sm hover:shadow-md">
+                            <h4 class="font-bold text-lg">3. Verify</h4>
+                        </div>
+                         <div id="step-4" class="step-item p-4 border border-gray-200 rounded-lg cursor-pointer transition-all duration-300 shadow-sm hover:shadow-md">
+                            <h4 class="font-bold text-lg">4. Issue Credit</h4>
+                        </div>
+                        <div id="step-5" class="step-item p-4 border border-gray-200 rounded-lg cursor-pointer transition-all duration-300 shadow-sm hover:shadow-md">
+                            <h4 class="font-bold text-lg">5. Market & Purchase</h4>
+                        </div>
+                        <div id="step-6" class="step-item p-4 border border-gray-200 rounded-lg cursor-pointer transition-all duration-300 shadow-sm hover:shadow-md">
+                            <h4 class="font-bold text-lg">6. Retire Credit</h4>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 md:sticky top-28">
+                        <div id="step-display" class="bg-slate-light p-8 rounded-xl min-h-[200px] transition-opacity duration-500">
+                            <h3 id="step-title" class="text-2xl font-bold text-green-deep mb-3"></h3>
+                            <p id="step-description" class="text-slate-600 leading-relaxed"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-green-deep">A Purpose-Built Platform</h2>
+                    <p class="mt-4 text-lg max-w-2xl mx-auto text-slate-600">Powerful tools designed for each stakeholder in the carbon market.</p>
+                </div>
+                <div class="max-w-4xl mx-auto">
+                    <div class="border-b border-gray-200 mb-8">
+                        <nav class="flex -mb-px space-x-6" aria-label="Tabs">
+                            <button class="tab-item py-4 px-1 border-b-2 font-medium text-lg" data-tab="ngo-dashboard">For NGOs</button>
+                            <button class="tab-item py-4 px-1 border-b-2 font-medium text-lg" data-tab="corporate-dashboard">For Corporations</button>
+                            <button class="tab-item py-4 px-1 border-b-2 font-medium text-lg" data-tab="marketplace">The Marketplace</button>
+                        </nav>
+                    </div>
+                    <div id="tab-content" class="min-h-[250px]">
+                        <div class="tab-pane" id="ngo-dashboard-content">
+                            <h3 class="text-2xl font-semibold mb-3 text-green-deep">NGO Dashboard</h3>
+                            <p class="text-slate-600">A mobile-first interface designed for the field. NGOs can easily upload geo-tagged photos and videos of planted trees, along with species and date information. The dashboard includes a real-time counter for pending and issued credits, and simplifies reporting to stakeholders and verifiers, reducing administrative burdens.</p>
+                        </div>
+                        <div class="tab-pane hidden" id="corporate-dashboard-content">
+                            <h3 class="text-2xl font-semibold mb-3 text-green-deep">Corporate Dashboard</h3>
+                            <p class="text-slate-600">An advanced analytics dashboard where companies can manage their portfolio of carbon credits. Users can view their total emissions offset, track the impact of their investments, and explore the specific reforestation projects they are supporting. This provides a transparent, auditable trail for CSR reporting.</p>
+                        </div>
+                        <div class="tab-pane hidden" id="marketplace-content">
+                             <h3 class="text-2xl font-semibold mb-3 text-green-deep">Credit Marketplace</h3>
+                             <p class="text-slate-600">A transparent and secure marketplace where companies can browse, purchase, and retire carbon credits from a variety of verified projects. Each credit is tied to rich data, including project location, tree species, and verification reports, empowering buyers to make informed decisions that align with their values.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="business-model" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-green-deep">Sustainable by Design</h2>
+                    <p class="mt-4 text-lg max-w-2xl mx-auto text-slate-600">Our business model is built to scale with our environmental impact, ensuring long-term viability and growth.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 text-green-deep">Revenue Streams</h3>
+                        <p class="text-slate-600 mb-6">We generate revenue through a multi-faceted approach that aligns our financial success with the success of our partners and the planet.</p>
+                        <ul class="space-y-4 text-slate-600">
+                           <li class="flex items-start"><span class="text-accent font-bold mr-2">✓</span><span><strong>Transaction Fees:</strong> A percentage-based fee on every credit transaction, scaling directly with market volume.</span></li>
+                           <li class="flex items-start"><span class="text-accent font-bold mr-2">✓</span><span><strong>Corporate Subscriptions:</strong> A tiered annual fee for corporate clients, providing predictable revenue and premium features.</span></li>
+                           <li class="flex items-start"><span class="text-accent font-bold mr-2">✓</span><span><strong>Issuance Fees:</strong> A small fee for NGOs upon successful credit verification, ensuring platform maintenance.</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="chart-container">
+                             <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="bg-green-deep text-white">
+        <div class="container mx-auto px-6 py-12 text-center">
+            <p class="text-2xl font-bold">CarbonVerse</p>
+            <p class="mt-2 text-green-200">Building a transparent future for our planet, one tree at a time.</p>
+            <p class="mt-6 text-sm text-green-300">&copy; 2025 CarbonVerse. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const stepData = {
+                "step-1": {
+                    title: "1. Plant",
+                    description: "It all starts on the ground. Partner NGOs, equipped with local knowledge, plant native tree species in designated restoration sites. This is the foundational act of carbon sequestration."
+                },
+                "step-2": {
+                    title: "2. Record",
+                    description: "Using the CarbonVerse mobile app, field teams record each new tree or planting area. They capture crucial metadata including GPS coordinates, species, and a time-stamped photo, creating the first entry on our immutable ledger."
+                },
+                "step-3": {
+                    title: "3. Verify",
+                    description: "Our platform uses Digital MRV (Monitoring, Reporting, and Verification) to confirm the data. This involves automated cross-checks using satellite imagery and AI to monitor tree growth over time. An independent, third-party verifier then audits this data to ensure it meets international standards."
+                },
+                "step-4": {
+                    title: "4. Issue Credit",
+                    description: "Once the sequestered carbon is verified, the platform issues a unique, tokenized Carbon Credit to the NGO's account. Each credit represents a verifiable amount of captured carbon and is traceable back to its origin."
+                },
+                "step-5": {
+                    title: "5. Market & Purchase",
+                    description: "The newly issued credits become available for purchase on the CarbonVerse marketplace. Steel companies and other corporations can browse projects and buy credits that align with their sustainability goals."
+                },
+                "step-6": {
+                    title: "6. Retire Credit",
+                    description: "When a company uses a credit to offset its emissions, the credit is permanently 'retired.' This action is recorded publicly on the ledger, ensuring the credit cannot be resold or double-counted, guaranteeing the integrity of the offset."
+                }
+            };
+
+            const stepItems = document.querySelectorAll('.step-item');
+            const stepTitle = document.getElementById('step-title');
+            const stepDescription = document.getElementById('step-description');
+
+            function updateStepDisplay(stepId) {
+                const data = stepData[stepId];
+                stepItems.forEach(item => {
+                    item.classList.remove('active');
+                });
+                document.getElementById(stepId).classList.add('active');
+
+                stepTitle.textContent = data.title;
+                stepDescription.textContent = data.description;
+            }
+
+            stepItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    updateStepDisplay(item.id);
+                });
+            });
+
+            updateStepDisplay('step-1');
+
+            const tabs = document.querySelectorAll('.tab-item');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    tabPanes.forEach(pane => {
+                        pane.classList.add('hidden');
+                    });
+                    document.getElementById(tab.dataset.tab + '-content').classList.remove('hidden');
+                });
+            });
+            tabs[0].classList.add('active');
+            tabPanes[0].classList.remove('hidden');
+
+
+            const ctx = document.getElementById('revenueChart').getContext('2d');
+            const revenueChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Transaction Fees', 'Corporate Subscriptions', 'Issuance Fees'],
+                    datasets: [{
+                        label: 'Revenue Distribution',
+                        data: [70, 25, 5],
+                        backgroundColor: [
+                            '#004d40', 
+                            '#334155', 
+                            '#c2410c', 
+                        ],
+                        borderColor: '#FDFBF8',
+                        borderWidth: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#334155',
+                                font: {
+                                    size: 14,
+                                    family: "'Inter', sans-serif"
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '60%'
+                }
+            });
+
+            const navLinks = document.querySelectorAll('a[href^="#"]');
+            navLinks.forEach(link => {
+                link.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute("href");
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+
+        });
+    </script>
+
+</body>
+</html>
